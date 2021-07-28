@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .views import first_page
+from crm import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', views.first_page),
+    path('thanks/', views.thanks_page, name='thanks_page'),
+    path('info/', views.info_page)
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
